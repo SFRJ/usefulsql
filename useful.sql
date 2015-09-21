@@ -65,3 +65,20 @@ select *
 SELECT table_name, owner
 FROM all_tables
 WHERE UPPER(table_name) LIKE '%EXCHANGE%';
+
+
+-- This command uses the foreig keys, to get all the contracts and clauses written by a lawyer in office 2226
+select * from bureau.lawyer l, bureau.contract c, bureau.clause cl
+where l.office_id = 2226
+and l.lawyer_id = c.lawyer_id
+and c.clause_id = cl.clause_id;
+
+
+-- for each distinct lawyer in office 2226 get all the data that that is connected to corrected clauses
+select distinct(l.lawyer_id) from bureau.lawyer l, bureau.contract c, bureau.clause cl
+where l.office_id = 2226
+and l.lawyer_id = c.lawyer_id
+and c.clause_id = 
+		 in(
+			select clause_id from bureau.clause_corrections) 
+
