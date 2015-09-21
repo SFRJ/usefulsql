@@ -80,5 +80,5 @@ where l.office_id = 2226
 and l.lawyer_id = c.lawyer_id
 and c.clause_id = 
 		 in(
-			select clause_id from bureau.clause_corrections) 
+			select clause_id from bureau.clause_corrections);
 
